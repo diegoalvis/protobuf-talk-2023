@@ -4,7 +4,7 @@ layout: cover
 title: 'Diego Alvis'
 titleTemplate: '%s - #droidconBLN23'
 canvasWidth: 1140
-transition: fade-out
+# transition: fade-out
 ---
 
 # Protocol Buffers on Android using gRPC
@@ -12,6 +12,21 @@ transition: fade-out
 ---
 
 # Intro
+<br><br><br>
+
+<v-clicks>
+
+Diego Alvis
+
+Engineering Manager @ Delivery Hero
+
+Colombian
+
+Spicy food enthusiastic
+
+Bus driver before becoming a developer
+
+</v-clicks>
 
 ---
 
@@ -19,45 +34,60 @@ transition: fade-out
 - What is Protobuf?
 - What is gRPC?
 - Where do we use Protobuf?
-- 
+
 ---
 
-## What are Protocol Buffers?
-<br><br>
+# What are Protocol Buffers?
+<br><br><br><br>
 
-- Protocol Buffers (protobuf) is alanguage-agnostic data serialization format developed by Google.
+- Protocol Buffers (protobuf) is a language-agnostic data serialization format developed by Google.
 <br>
 - It allows you to define structured data schemas in a simple language.
 <br>
 - Protobuf messages are more compact, efficient, and extensible compared to traditional XML or JSON formats.
 
 ---
+layout: two-cols
+image: https://grpc.io/img/landing-2.svg
+---
 
-## Where can we use it?
+# Where can we use it?
+<br><br><br><br>
+
+- Protocol Buffers (protobuf) is a language-agnostic data serialization format developed by Google.
 <br>
+- It allows you to define structured data schemas in a simple language.
+<br>
+- Protobuf messages are more compact, efficient, and extensible compared to traditional XML or JSON formats.
 
+::right::
+<br><br><br><br>
 
 ![grpc](https://grpc.io/img/landing-2.svg)
 <br>
-Source: https://grpc.io/img/landing-2.svg
+
+<br><br><br>
+
+       ##### Image source: https://grpc.io/img/landing-2.svg
 
 <!-- 
 Server to server comunication is other common case
 -->
 ---
 
-### Message Defintion
+## Message Defintion
 
+<div v-click>
 <div class="grid grid-cols-2 gap-20">
 <div>
 
 JSON
-```javascript
-  "person" {
-      "id": int,
-      "name": string,
-      "email": string
-    }
+```java
+  "person": {
+    "id": int,
+    "name": string,
+    "email": string
+  }
 ```
 </div>
 <div>
@@ -70,6 +100,7 @@ XML
     <email>string</email>
   </person>
 ```
+</div>
 </div>
 </div>
 
@@ -110,19 +141,20 @@ Protobuf uses up to 2 bytes as identifier.
 </div>
 </div>
 
+<br><br><br><br>
+<br><br><br><br>
 Source: https://www.thoughtworks.com/en-es/insights/blog/microservices/scaling-microservices-gRPC-part-one
 
 ---
 
 # What is gRPC?
-Framework for Remote Procedure Calls developed by Google
+<br><br><br>
 
-<br>
-gRPC is the framework and Protobuf is the data format
+- gRPC is a framework for Remote Procedure Calls developed by Google
 
-gRPC by default uses Protobuf
+- gRPC by default uses Protobuf
 
-Other examples of Remote Procedure Calls are GraphQL and Rest
+- Other examples of Remote Procedure Calls are GraphQL and Rest
 
 ---
 
@@ -134,7 +166,7 @@ syntax = "proto3";
 package com.example.grpc;
 
 
-message Person {
+message Passenger {
   int32 id = 1;
   string name = 2;
   string email = 3;
@@ -143,7 +175,7 @@ message Person {
 message MyRequest { }
 
 service MyService {
-  rpc GetPerson (MyRequest) returns (Person) {}
+  rpc GetPassenger (MyRequest) returns (Passenger) {}
 }
 ```
 
@@ -155,26 +187,25 @@ service MyService {
 syntax = "proto3";
 package com.example.grpc;
 
-message Person {
+message Passenger {
   int32 id = 1;
-}
-
-message GetPerson { 
   string passport = 1;
   repeated string addresses = 3;
 }
 
-message GetPersonsRequest { 
+message Request { }
+
+message GetPassengersRequest { 
   string countryCode = 1;  
 }
 
-message GetPersonsResponse {
-  repeated Person persons;
+message GetPassengersResponse {
+  repeated Passenger passengers;
 }
 
 service MyService {
-  rpc GetPerson (GetPerson) returns (Person);
-  rpc GetPersons (GetPersonsRequest) returns (GetPersonsResponse);
+  rpc GetPassenger (Request) returns (Passenger);
+  rpc GetPassengers (GetPassengersRequest) returns (GetPassengersResponse);
 }
 ```
 
@@ -188,13 +219,13 @@ service MyService {
 Both sides use the same schema to auto generate code
 ---
 
-## Why Use Protobuf with gRPC?
+# Benefits of gRPC and Protobuf?
 <br><br>
 
 - Efficient serialization: Smaller message size and faster* parsing compared to JSON or XML
 - Language-agnostic: Protobuf supports multiple programming languages
 - Versioning and backward compatibility: Easy to evolve and modify data schemas without breaking existing clients
-- Code generation: Protobuf schemas can be used to generate code for serialization and deserialization
+- Auto-generated code: Protobuf schemas can be used to generate code for serialization and deserialization
 <br><br>
 <div v-click>
 
@@ -204,6 +235,7 @@ Both sides use the same schema to auto generate code
 | Node        | Objective-C | PHP    |
 | Python      | Ruby     |          |
 
+<br><br>
 Source: https://grpc.io/docs/languages/
 </div>
 
@@ -213,13 +245,18 @@ background: https://thumbs.gfycat.com/EvergreenCarefulIvorybackedwoodswallow-siz
 ---
 ---
 
-## Integrating Protocol Buffers and gRPC on Android
+## Integrating Protobuf and gRPC on Android
 
 ![image](https://source.android.com/static/docs/setup/images/Android_symbol_green_RGB.png)
 
 ---
+layout: cover
+---
 
-# Integrating Protocol Buffers and gRPC on Android
+# Summer = Ice Cream 🍦
+---
+
+# Integrating Protobuf and gRPC on Android
 Ice Cream application
 
 ### 1. Define messages: Create `ice_cream.proto` file
@@ -247,7 +284,7 @@ message Flavor {
 ```   
 ---
 
-# Integrating Protocol Buffers and gRPC on Android
+# Integrating Protocbuf and gRPC on Android
 Ice Cream application
 
 ### 2. Define service
@@ -293,7 +330,7 @@ Include the gRPC dependencies in your project:
 </div>
 ---
 
-### Setup protobuf compiler plugin in Gradle for Kotlin
+### 4. Setup protobuf compiler plugin in Gradle for Kotlin
 <br>
 
 ```gradle
@@ -324,23 +361,27 @@ protobuf {
 ```
 ---
 
-### Auto-generated Resources
+### 5. Run gradle and get auto-generated code
 ![image](/screenshot_1.png)
 
 ---
 
-# Configure gRPC connection
+## 6. Configure gRPC connection
 <br>
+<div v-click>
 
 ## Channel
+<br>
+
+- A gRPC channel provides a connection to a gRPC server on a specified host and port
+- A channel should be reused when making gRPC calls
+- Clients created from the channel can make multiple simultaneous calls
+
 ```java
   val channel: ManagedChannel = ManagedChannelBuilder.forAddress("localhost", 50051).build()
 ```
 
-- A gRPC channel provides a connection to a gRPC server on a specified host and port.
-- A channel should be reused when making gRPC calls
-- Clients created from the channel can make multiple simultaneous calls
-
+</div>
 <!--
 Opening a socket
 Establishing TCP connection
@@ -348,19 +389,26 @@ Negotiating TLS (Transport Layer Security)
 Starting HTTP/2 connection
 Making the gRPC call
 -->
+<br><br>
+<div v-click>
+
 ## Client Stub
+<br>
+
+- Entry point for initiating RPC calls from client sid
+- Auto-generated by `protoc` compiler 
+- Coroutine based
 
 ```java {2}
   val channel: ManagedChannel = ManagedChannelBuilder.forAddress("localhost", 50051).build()
   val coroutineStub = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
 ```
 
-- Entry point for initiating RPC calls from client sid
-- Auto-generated by `protoc` compiler 
-- Coroutine based
+
+</div>
 ---
 
-## Implementing functions
+## 7. Implementing functions
 <br>
 ```kotlin
   val channel: ManagedChannel = ManagedChannelBuilder.forAddress("localhost", 50051).build()
@@ -394,7 +442,7 @@ Making the gRPC call
 layout: cover
 ---
 
-# Summer = Ice Cream 🍦
+## Run application
 
 ---
 layout: two-cols
@@ -467,7 +515,7 @@ CPU, Memory and Battery
 
 ---
 
-# Trend comparission
+# Trend comparison
 Google search terms in the past 5 years
 
 <br><br>
@@ -511,20 +559,22 @@ https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,RES
 
 ---
 
-## Learnings
-
-<v-clicks>
+# Learnings
 
 <br><br><br><br><br>
-Once you get familiar, gRPC is incredible faster and less-prone to error than Rest
+<v-clicks>
 
-Setup might be time consuming. Allocalte enough time and capacity
+- gRPC will make your app faster and less-prone to error
 
-There is no need to migrate from REST. Use gRPC for new features
+- Setup might be time consuming. Allocate enough time and capacity
 
-Interceptors might not be trivial
+- There is no need to migrate from Rest or GraphQL (JSON). Use gRPC for new features
 
-Helps to leverage knowledge about server side as dMobile Engineers
+- Interceptors might not be trivial. Don't leave them for the end
+
+- Hard to debug. Protobuf is designed to be understood by machines not humans
+
+- Helps to leverage knowledge about server side as Mobile Engineer
 
 </v-clicks>
 
@@ -533,14 +583,15 @@ layout: two-cols
 ---
 <template v-slot:default>
 
-## Thank You!
+# Thank You!
+
 </template>
 
 <template v-slot:right>
 <br><br><br><br>
-
-<br><br><br><br><br>
-<br><br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
 
 - <grommet-icons-mail />  diegoalvispal@gmail.com
 - <grommet-icons-github />  [diegoalvis](https://github.com/diegoalvis)
