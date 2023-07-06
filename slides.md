@@ -12,7 +12,8 @@ canvasWidth: 1140
 ---
 
 # Intro
-<br><br><br>
+<br><br>
+<br><br>
 
 <v-clicks>
 
@@ -22,60 +23,64 @@ Engineering Manager @ Delivery Hero
 
 Colombian
 
-Spicy food enthusiastic
+Love spicy food
 
 Bus driver before becoming a developer
+
+Birthday was 2 days ago
+
+I make terrible jokes
 
 </v-clicks>
 
 ---
 
 # Agenda
+<br><br>
+<br><br>
+
 - What is Protobuf?
+- Where is used?
 - What is gRPC?
-- Where do we use Protobuf?
-
----
-
-# What are Protocol Buffers?
-<br><br><br><br>
-
-- Protocol Buffers (protobuf) is a language-agnostic data serialization format developed by Google.
-<br>
-- It allows you to define structured data schemas in a simple language.
-<br>
-- Protobuf messages are more compact, efficient, and extensible compared to traditional XML or JSON formats.
+- Benefits of gRPC and Protobuf?
+- How to integrate gRPC and Protobuf on Android
+- Benchmark
+- Learnings
 
 ---
 layout: two-cols
 image: https://grpc.io/img/landing-2.svg
 ---
 
-# Where can we use it?
+# What is Protobuf?
 <br><br><br><br>
 
-- Protocol Buffers (protobuf) is a language-agnostic data serialization format developed by Google.
+- Protocol Buffers (protobuf) is a language-agnostic data serialization format developed by Google
 <br>
-- It allows you to define structured data schemas in a simple language.
+
+- It allows you to define structured data schemas in a simple language
 <br>
-- Protobuf messages are more compact, efficient, and extensible compared to traditional XML or JSON formats.
+
+- Protobuf messages are more compact, efficient, and extensible compared to traditional XML or JSON formats
 
 ::right::
+
+<div v-click>
 <br><br><br><br>
 
 ![grpc](https://grpc.io/img/landing-2.svg)
 <br>
-
 <br><br><br>
 
-       ##### Image source: https://grpc.io/img/landing-2.svg
+##### Image source: https://grpc.io/img/landing-2.svg
 
+</div>
 <!-- 
-Server to server comunication is other common case
+Server to server communication is other common case
 -->
 ---
 
-## Message Defintion
+# Message Definition
 
 <div v-click>
 <div class="grid grid-cols-2 gap-20">
@@ -118,7 +123,7 @@ Protobuf
 
 <br>
 <div v-click>
-Protobuf uses up to 2 bytes as identifier. 
+Protobuf uses up to 2 bytes for the identifier.
 
 * 1 to 15  -->  1 byte  (0x0F)
 * 16 to 2047  -->  2 bytes (0x07FF)
@@ -141,8 +146,23 @@ Protobuf uses up to 2 bytes as identifier.
 </div>
 </div>
 
-<br><br><br><br>
-<br><br><br><br>
+<br>
+
+<v-clicks>
+
+3000 - 1350 =  ~1600 bytes saved
+
+100 request per day
+
+1 month  -->  1600 * 100 * 30 = 4.800.000 bytes  = 4.8 Megabytes
+
+5K users -> 24 GB data saved
+
+### Up to 7 times faster
+
+</v-clicks>
+
+<br>
 Source: https://www.thoughtworks.com/en-es/insights/blog/microservices/scaling-microservices-gRPC-part-one
 
 ---
@@ -150,11 +170,15 @@ Source: https://www.thoughtworks.com/en-es/insights/blog/microservices/scaling-m
 # What is gRPC?
 <br><br><br>
 
+<div v-click>
+
 - gRPC is a framework for Remote Procedure Calls developed by Google
 
 - gRPC by default uses Protobuf
 
 - Other examples of Remote Procedure Calls are GraphQL and Rest
+
+</div>
 
 ---
 
@@ -182,6 +206,7 @@ service MyService {
 ---
 
 # Proto File 
+Booking system
 
 ```protobuf
 syntax = "proto3";
@@ -211,7 +236,8 @@ service MyService {
 
 ---
 
-## Schema
+# Schema
+<br>
 
 ![grpc](https://www.mulesoft.com/sites/default/files/cmm_files/how-to-auto-generate-grpc-code-using-protoc-figure-proto.png)
 <br>
@@ -222,11 +248,16 @@ Both sides use the same schema to auto generate code
 # Benefits of gRPC and Protobuf?
 <br><br>
 
+<div v-click>
+
+
 - Efficient serialization: Smaller message size and faster* parsing compared to JSON or XML
 - Language-agnostic: Protobuf supports multiple programming languages
 - Versioning and backward compatibility: Easy to evolve and modify data schemas without breaking existing clients
 - Auto-generated code: Protobuf schemas can be used to generate code for serialization and deserialization
 <br><br>
+
+</div>
 <div v-click>
 
 | C# / .NET   | Dart     | Go       |
@@ -245,7 +276,8 @@ background: https://thumbs.gfycat.com/EvergreenCarefulIvorybackedwoodswallow-siz
 ---
 ---
 
-## Integrating Protobuf and gRPC on Android
+# Integrating Protobuf and gRPC on Android
+<br>
 
 ![image](https://source.android.com/static/docs/setup/images/Android_symbol_green_RGB.png)
 
@@ -284,7 +316,7 @@ message Flavor {
 ```   
 ---
 
-# Integrating Protocbuf and gRPC on Android
+# Integrating Protobuf and gRPC on Android
 Ice Cream application
 
 ### 2. Define service
@@ -310,7 +342,7 @@ service IceCream {
 
 ---
 
-# Integrating Protocol Buffers and gRPC on Android
+# Integrating Protobuf and gRPC on Android
 Ice Cream application
 
 ### 3. Generate code from protobuf schema:
@@ -329,6 +361,9 @@ Include the gRPC dependencies in your project:
 
 </div>
 ---
+
+# Integrating Protobuf and gRPC on Android
+Ice Cream application
 
 ### 4. Setup protobuf compiler plugin in Gradle for Kotlin
 <br>
@@ -361,17 +396,22 @@ protobuf {
 ```
 ---
 
+# Integrating Protobuf and gRPC on Android
+Ice Cream application
+
 ### 5. Run gradle and get auto-generated code
 ![image](/screenshot_1.png)
 
 ---
 
-## 6. Configure gRPC connection
+# Integrating Protobuf and gRPC on Android
+Ice Cream application
+
+### 6. Configure gRPC connection
 <br>
 <div v-click>
 
 ## Channel
-<br>
 
 - A gRPC channel provides a connection to a gRPC server on a specified host and port
 - A channel should be reused when making gRPC calls
@@ -389,11 +429,10 @@ Negotiating TLS (Transport Layer Security)
 Starting HTTP/2 connection
 Making the gRPC call
 -->
-<br><br>
+<br>
 <div v-click>
 
 ## Client Stub
-<br>
 
 - Entry point for initiating RPC calls from client sid
 - Auto-generated by `protoc` compiler 
@@ -408,41 +447,43 @@ Making the gRPC call
 </div>
 ---
 
-## 7. Implementing functions
+# Integrating Protobuf and gRPC on Android
+Ice Cream application
+
+### 7. Implementing functions
 <br>
+<v-clicks>
 ```kotlin
   val channel: ManagedChannel = ManagedChannelBuilder.forAddress("localhost", 50051).build()
   val coroutineStub = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
 ```
-<div v-click>
+
 ```kotlin
   suspend fun getCones(userId: String): List<Cone> {
     val request = request { }
     return coroutineStub.getCones(request).coneList
   }
 ```
-</div>
-<div v-click>
+
 ```kotlin
   suspend fun getFlavors(userId: String): List<Flavor> {
     val request = request { }
     return coroutineStub.getFlavors(request).flavorList
   }
 ```
-</div>
-<div v-click>
+
 ```kotlin
   fun close() {
       channel.shutdownNow()
   }
 ```
-</div>
+</v-clicks>
 
 ---
 layout: cover
 ---
 
-## Run application
+# Run application
 
 ---
 layout: two-cols
