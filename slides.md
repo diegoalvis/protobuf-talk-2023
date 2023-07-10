@@ -4,14 +4,37 @@ layout: cover
 title: 'Diego Alvis'
 titleTemplate: '%s - #droidconBLN23'
 canvasWidth: 1140
-# transition: fade-out
+transition: fade-out
 ---
 
 # Protocol Buffers on Android using gRPC
 
 ---
 
-# Intro
+## Introductory Session
+<br><br>
+
+### What to expect?
+
+Overview. What is Protobuf and gRPC?
+
+Why and When to use them?
+
+<br><br>
+
+<div v-click>
+
+### Don't expect
+
+Become an expert after 40 min talk
+
+Solve all your problems
+
+Strickers and free merchandise
+</div>
+---
+
+# Hola!
 <br><br>
 <br><br>
 
@@ -21,15 +44,11 @@ Diego Alvis
 
 Engineering Manager @ Delivery Hero
 
-Colombian
-
 Love spicy food
 
 Bus driver before becoming a developer
 
-Birthday was 2 days ago
-
-I make terrible jokes
+Let's go!
 
 </v-clicks>
 
@@ -40,41 +59,51 @@ I make terrible jokes
 <br><br>
 
 - What is Protobuf?
-- Where is used?
+- Where can we use it?
 - What is gRPC?
-- Benefits of gRPC and Protobuf?
-- How to integrate gRPC and Protobuf on Android
-- Benchmark
+- Benefits of Protobuf and gRPC
+- Implementtation on Android
+- Benchmarks
 - Learnings
 
 ---
-layout: two-cols
-image: https://grpc.io/img/landing-2.svg
+
+## We are here
+
+<div v-click>
+
+<img src="/image_1.jpeg" width="650" height="100" />
+
+</div>
+
+<div v-click>
+<br>
+
+### Why is this important?
+<br>
+
+- Mobile engineers are also Software engineers
+- You can't build an amazing product if you API layer is not amazing too
+- Leverage knowledge about the software in general
+
+</div>
+
+
 ---
 
 # What is Protobuf?
 <br><br><br><br>
 
+<v-clicks>
+
 - Protocol Buffers (protobuf) is a language-agnostic data serialization format developed by Google
-<br>
 
 - It allows you to define structured data schemas in a simple language
-<br>
 
-- Protobuf messages are more compact, efficient, and extensible compared to traditional XML or JSON formats
+- Protobuf messages are more compact and efficient compared to traditional JSON or XML formats
 
-::right::
+</v-clicks>
 
-<div v-click>
-<br><br><br><br>
-
-![grpc](https://grpc.io/img/landing-2.svg)
-<br>
-<br><br><br>
-
-##### Image source: https://grpc.io/img/landing-2.svg
-
-</div>
 <!-- 
 Server to server communication is other common case
 -->
@@ -150,11 +179,13 @@ Protobuf uses up to 2 bytes for the identifier.
 
 <v-clicks>
 
-3000 - 1350 =  ~1600 bytes saved
+Taking a Average Http call Response of 3KB (JSON)  -> 1.3KB (Protobuf)
+
+3000 - 1350 =  ~1.6 KB saved
 
 100 request per day
 
-1 month  -->  1600 * 100 * 30 = 4.800.000 bytes  = 4.8 Megabytes
+1 month  -->  1600 * 100 * 30 = 4.800.000 bytes  = 4.8 MB
 
 5K users -> 24 GB data saved
 
@@ -168,9 +199,10 @@ Source: https://www.thoughtworks.com/en-es/insights/blog/microservices/scaling-m
 ---
 
 # What is gRPC?
-<br><br><br>
+<br>
 
-<div v-click>
+<v-clicks>
+
 
 - gRPC is a framework for Remote Procedure Calls developed by Google
 
@@ -178,12 +210,27 @@ Source: https://www.thoughtworks.com/en-es/insights/blog/microservices/scaling-m
 
 - Other examples of Remote Procedure Calls are GraphQL and Rest
 
-</div>
+</v-clicks>
 
+<br>
+<div v-click>
+
+![image](https://grpc.io/img/landing-2.svg)
+</div>
+---
+
+# Unary and Stream
+<br>
+<div v-click>
+
+![image](https://i0.wp.com/miro.medium.com/max/861/1*rdflKABGrhOfFdhyzeBUQw.png?w=1230&ssl=1)
+</div>
 ---
 
 # Proto File 
 Booking system
+
+<div v-click>
 
 ```proto {monaco}
 syntax = "proto3";
@@ -199,11 +246,12 @@ message Passenger {
 message MyRequest { }
 
 service MyService {
-  rpc GetPassenger (MyRequest) returns (Passenger) {}
+  rpc GetPassenger (MyRequest) returns (Passenger);
 }
 ```
+</div>
 
----
+<!-- ---
 
 # Proto File 
 Booking system
@@ -232,7 +280,7 @@ service MyService {
   rpc GetPassenger (Request) returns (Passenger);
   rpc GetPassengers (GetPassengersRequest) returns (GetPassengersResponse);
 }
-```
+``` -->
 
 ---
 
@@ -251,8 +299,8 @@ Both sides use the same schema to auto generate code
 <div v-click>
 
 
-- Efficient serialization: Smaller message size and faster* parsing compared to JSON or XML
-- Language-agnostic: Protobuf supports multiple programming languages
+- Efficient serialization: Smaller message size and faster parsing compared to JSON or XML
+- Language-agnostic: gRPC supports multiple programming languages
 - Versioning and backward compatibility: Easy to evolve and modify data schemas without breaking existing clients
 - Auto-generated code: Protobuf schemas can be used to generate code for serialization and deserialization
 <br><br>
@@ -291,7 +339,9 @@ layout: cover
 # Integrating Protobuf and gRPC on Android
 Ice Cream application
 
-### 1. Define messages: Create `ice_cream.proto` file
+### 1. Schema. Define messages: Create `ice_cream.proto` file
+
+<div v-click>
 
 ```protobuf
 syntax = "proto3";
@@ -313,13 +363,19 @@ message Flavor {
 }
 ...
 ...
-```   
+```
+
+</div>
 ---
 
 # Integrating Protobuf and gRPC on Android
 Ice Cream application
 
-### 2. Define service
+
+### 2. Schema. Define service
+
+<div v-click>
+
 ```protobuf
 ...
 ...
@@ -339,20 +395,15 @@ service IceCream {
   rpc GetFlavors(Request) returns (FlavorsReply);
 }
 ```   
+</div>
 
 ---
 
 # Integrating Protobuf and gRPC on Android
 Ice Cream application
 
-### 3. Generate code from protobuf schema:
-
-Use the Protocol Buffers compiler (`protoc`) with the gRPC plugin to generate Java code for message and service.
-
-<br><br>
+### 3. Adding gRPC Dependencies to Android Project
 <div v-click>
-
-### Adding gRPC Dependencies to Android Project
 
 Include the gRPC dependencies in your project:
    - `implementation "io.grpc:grpc-okhttp:$grpc_version"`
@@ -360,13 +411,18 @@ Include the gRPC dependencies in your project:
    - `implementation "io.grpc:grpc-stub:$grpc_version"`
 
 </div>
+<br><br>
+<div v-click>
+Use the Protocol Buffers compiler (`protoc`) with the gRPC plugin to generate Java/Kotlin code for messages and service.
+</div>
+
 ---
 
 # Integrating Protobuf and gRPC on Android
 Ice Cream application
 
-### 4. Setup protobuf compiler plugin in Gradle for Kotlin
-<br>
+### 4. Setup protobuf compiler plugin in Gradle
+<div v-click>
 
 ```gradle
 protobuf {
@@ -394,14 +450,17 @@ protobuf {
     }
 }
 ```
+</div>
 ---
 
 # Integrating Protobuf and gRPC on Android
 Ice Cream application
 
-### 5. Run gradle and get auto-generated code
-![image](/screenshot_1.png)
+### 5. Gradle task to build project and get auto-generated code
+<div v-click>
 
+![image](/screenshot_1.png)
+</div>
 ---
 
 # Integrating Protobuf and gRPC on Android
@@ -434,7 +493,7 @@ Making the gRPC call
 
 ## Client Stub
 
-- Entry point for initiating RPC calls from client sid
+- Entry point for initiating RPC calls from client side
 - Auto-generated by `protoc` compiler 
 - Coroutine based
 
@@ -459,14 +518,14 @@ Ice Cream application
 ```
 
 ```kotlin
-  suspend fun getCones(userId: String): List<Cone> {
+  suspend fun getCones(): List<Cone> {
     val request = request { }
     return coroutineStub.getCones(request).coneList
   }
 ```
 
 ```kotlin
-  suspend fun getFlavors(userId: String): List<Flavor> {
+  suspend fun getFlavors(): List<Flavor> {
     val request = request { }
     return coroutineStub.getFlavors(request).flavorList
   }
@@ -507,13 +566,21 @@ class IceCreamRpcService : Closeable {
     
     
     suspend fun getCones(userId: String): List<Cone> {
+      try {
         val request = request { this.userId = userId }
-        return coroutineStub.getCones(request).coneList
+        return coroutineStub.getCones(request).coneList    
+      } catch (e: IOException) {
+          // TODO handle exception        
+      }
     }
 
     suspend fun getFlavors(userId: String): List<Flavor> {
+      try {
         val request = request { this.userId = userId }
         return coroutineStub.getFlavors(request).flavorList
+      } catch (e: IOException) {
+        // TODO handle exception        
+      }
     }
 
     override fun close() {
@@ -600,7 +667,7 @@ https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,RES
 
 ---
 
-# Learnings
+# Learnings / Advices
 
 <br><br><br><br><br>
 <v-clicks>
@@ -613,9 +680,7 @@ https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,RES
 
 - Interceptors might not be trivial. Don't leave them for the end
 
-- Hard to debug. Protobuf is designed to be understood by machines not humans
-
-- Helps to leverage knowledge about server side as Mobile Engineer
+- Needs more support from the mobile community
 
 </v-clicks>
 
