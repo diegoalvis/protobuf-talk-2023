@@ -721,7 +721,7 @@ https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,RES
 
 ---
 
-# Learnings / Advices
+# Learnings
 
 <br><br><br><br><br>
 <v-clicks>
@@ -743,7 +743,14 @@ layout: two-cols
 ---
 <template v-slot:default>
 
+<br><br>
+
 # Thank You!
+
+<br><br><br><br>
+
+
+Travel App repo: https://github.com/diegoalvis/travel-app-grpc
 
 </template>
 
