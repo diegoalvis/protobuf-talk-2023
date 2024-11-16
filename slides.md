@@ -26,15 +26,20 @@ Why and When to use them?
 
 ### Don't expect
 
+<v-clicks>
+
 Become an expert after 40 min talk
 
-Solve all your problems
+gRPC will solve all your problems
 
-Strickers and free merchandise
+Socks, stickers and other free merchandise
+
+</v-clicks>
+
 </div>
 ---
 
-# Hola!
+# About me
 <br><br>
 <br><br>
 
@@ -42,13 +47,16 @@ Strickers and free merchandise
 
 Diego Alvis
 
-Engineering Manager @ Delivery Hero
+Mobile Engineer at Zing (HSBC)
 
-Love spicy food
+Lived in Berlin for some years (Delivery Hero)
 
-Bus driver before becoming a developer
+Moved recently to Hong Kong (August, 2024)
 
-Let's go!
+Run. Muay Thai. Love spicy food
+<br>
+
+## Let's go!
 
 </v-clicks>
 
@@ -56,7 +64,7 @@ Let's go!
 
 # Agenda
 <br><br>
-<br><br>
+
 
 - What is Protobuf?
 - Where can we use it?
@@ -251,7 +259,7 @@ service MyService {
 ```
 </div>
 
-<!-- ---
+<!-- 
 
 # Proto File 
 Booking system
@@ -280,7 +288,8 @@ service MyService {
   rpc GetPassenger (Request) returns (Passenger);
   rpc GetPassengers (GetPassengersRequest) returns (GetPassengersResponse);
 }
-``` -->
+``` 
+-->
 
 ---
 
@@ -291,9 +300,37 @@ service MyService {
 <br>
 
 Both sides use the same schema to auto generate code
+
 ---
 
-# Benefits of gRPC and Protobuf?
+# Useful Tips
+<br> <br>
+
+<v-clicks>
+
+
+Generate files separately using 
+```proto 
+  option java_multiple_files = true;
+  option java_outer_classname = "TravelProto"; // Specify class name
+```
+
+If you have a multimodule project is better to create  a module to store all the proto files. Using Setup in gradle
+
+Use optional to prevent breaking changes and better backwards compatibility support
+
+Be careful with repeated. Large arrays don't perform well
+
+<br> <br>
+<br> <br>
+Docs: https://protobuf.dev/programming-guides/encoding/
+
+
+</v-clicks>
+
+---
+
+# Benefits of gRPC and Protobuf
 <br><br>
 
 <div v-click>
@@ -320,7 +357,7 @@ Source: https://grpc.io/docs/languages/
 
 ---
 layout: cover
-background: https://thumbs.gfycat.com/EvergreenCarefulIvorybackedwoodswallow-size_restricted.gif
+background: https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzkyeGluNnkydmMyOTRqNG96d3dyN3JlZGt3aWoxbmhncmdmMncxNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SWdNAbwRVQbODxsi4g/giphy.gif
 ---
 ---
 
@@ -333,66 +370,63 @@ background: https://thumbs.gfycat.com/EvergreenCarefulIvorybackedwoodswallow-siz
 layout: cover
 ---
 
-# Summer = Ice Cream 🍦
+# Travel App 🛫
 ---
 
 # Integrating Protobuf and gRPC on Android
-Ice Cream application
 
-### 1. Schema. Define messages: Create `ice_cream.proto` file
-
+### 1. Schema. Define messages: Create `travel.proto` file
+<br>
 <div v-click>
 
-```protobuf
+```protobuf {lines:true}
 syntax = "proto3";
 package com.example.grpc;
 
-message Cone {
-  int32 id = 1;
-  string image_url = 2;
-  bool available = 3;
+message Destination {
+  string id = 1;
+  string title = 2;
+  string image_url = 4;
+  ...
+  repeated ThingToDo things_to_do = 7;
+  repeated FoodAndDrink food_and_drinks = 8;
 }
 
-message Flavor {
-  int32 id = 1;
-  string name = 1;
-  string image_url = 2;
-  optional string description = 3;
-  double price = 4;
-  bool available = 6;
+message ThingToDo {
+  ...
+  int32 reviews_count = 5;
+  float score = 6;
 }
-...
-...
+
+message FoodAndDrink {
+  ...
+  string name = 2;
+  string image_url = 3;
+}
 ```
 
 </div>
 ---
 
 # Integrating Protobuf and gRPC on Android
-Ice Cream application
+Travel App
 
 
 ### 2. Schema. Define service
-
+<br>
 <div v-click>
 
 ```protobuf
-...
-...
-
-message Request { }
-
-message ConesReply {
-  repeated Cone cone = 1;
+service TravelService {
+  rpc GetDestinations (GetDestinationsRequest) returns (GetDestinationsResponse);
 }
 
-message FlavorsReply {
-  repeated Flavor flavor = 1;
+message GetDestinationsRequest {
+  // TODO
 }
 
-service IceCream {
-  rpc GetCones(Request) returns (ConesReply);
-  rpc GetFlavors(Request) returns (FlavorsReply);
+message GetDestinationsResponse {
+  repeated Destination destinations = 1;
 }
 ```   
 </div>
@@ -400,7 +434,7 @@ service IceCream {
 ---
 
 # Integrating Protobuf and gRPC on Android
-Ice Cream application
+Travel App
 
 ### 3. Adding gRPC Dependencies to Android Project
 <div v-click>
@@ -419,12 +453,12 @@ Use the Protocol Buffers compiler (`protoc`) with the gRPC plugin to generate Ja
 ---
 
 # Integrating Protobuf and gRPC on Android
-Ice Cream application
+Travel App
 
 ### 4. Setup protobuf compiler plugin in Gradle
 <div v-click>
 
-```gradle
+```ts
 protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:${rootProject.ext["protobufVersion"]}"
@@ -450,21 +484,24 @@ protobuf {
     }
 }
 ```
+
 </div>
+
 ---
 
 # Integrating Protobuf and gRPC on Android
-Ice Cream application
+Travel App
 
 ### 5. Gradle task to build project and get auto-generated code
 <div v-click>
 
 ![image](/screenshot_1.png)
 </div>
+
 ---
 
 # Integrating Protobuf and gRPC on Android
-Ice Cream application
+Travel App
 
 ### 6. Configure gRPC connection
 <br>
@@ -481,13 +518,6 @@ Ice Cream application
 ```
 
 </div>
-<!--
-Opening a socket
-Establishing TCP connection
-Negotiating TLS (Transport Layer Security)
-Starting HTTP/2 connection
-Making the gRPC call
--->
 <br>
 <div v-click>
 
@@ -499,39 +529,51 @@ Making the gRPC call
 
 ```java {2}
   val channel: ManagedChannel = ManagedChannelBuilder.forAddress("localhost", 50051).build()
-  val coroutineStub = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
+  val coroutineStub = TravelServiceGrpcKt.TravelServiceCoroutineStub(channel)  
 ```
 
 
 </div>
+
+<!--
+Opening a socket
+
+Establishing TCP connection
+
+Negotiating TLS (Transport Layer Security)
+
+Starting HTTP/2 connection
+
+Making the gRPC call
+-->
+
 ---
 
 # Integrating Protobuf and gRPC on Android
-Ice Cream application
+Travel App
 
 ### 7. Implementing functions
 <br>
 <v-clicks>
-```kotlin
+
+```java
   val channel: ManagedChannel = ManagedChannelBuilder.forAddress("localhost", 50051).build()
-  val coroutineStub = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
+  val coroutineStub = TravelServiceGrpcKt.TravelServiceCoroutineStub(channel)
 ```
 
-```kotlin
-  suspend fun getCones(): List<Cone> {
-    val request = request { }
-    return coroutineStub.getCones(request).coneList
+```java
+  suspend fun getDestinations(location: String): List<Destination> {
+      try {
+          val request = getDestinationsRequest {                
+              location = location
+          }
+          return coroutineStub.getDestinations(request).destinationsList
+      } catch (e: Exception) {            
+          throw e
+      }
   }
-```
 
-```kotlin
-  suspend fun getFlavors(): List<Flavor> {
-    val request = request { }
-    return coroutineStub.getFlavors(request).flavorList
-  }
-```
 
-```kotlin
   fun close() {
       channel.shutdownNow()
   }
@@ -549,44 +591,43 @@ layout: two-cols
 ---
 
 <template v-slot:default>
-<img src="https://user-images.githubusercontent.com/6097526/250302965-9154b568-a996-4be8-bb07-7e0396ab32f5.gif " width="270" />
+<img src="https://github.com/diegoalvis/travel-app-grpc/blob/main/screens/travel_app_gif.gif?raw=true" width="270" />
 </template>
 
 <template v-slot:right>
 
-```kotlin
-class IceCreamRpcService : Closeable {
+```java
+class TravelService : Closeable {
 
-    private val coroutineStub = IceCreamGrpcKt.IceCreamCoroutineStub(channel)
-    
-    private val channel = ManagedChannelBuilder
-              .forAddress("localhost", 50051)
-              .executor(Dispatchers.IO.asExecutor())
-              .build()
-    
-    
-    suspend fun getCones(userId: String): List<Cone> {
-      try {
-        val request = request { this.userId = userId }
-        return coroutineStub.getCones(request).coneList    
-      } catch (e: IOException) {
-          // TODO handle exception        
-      }
-    }
+    private val channel = createChannel(SERVER_URL)
+    private val coroutineStub = TravelServiceGrpcKt.TravelServiceCoroutineStub(channel)
 
-    suspend fun getFlavors(userId: String): List<Flavor> {
-      try {
-        val request = request { this.userId = userId }
-        return coroutineStub.getFlavors(request).flavorList
-      } catch (e: IOException) {
-        // TODO handle exception        
-      }
+    suspend fun getDestinations(location: String): List<Destination> {
+        try {
+            val request = getDestinationsRequest { }
+            return coroutineStub.getDestinations(request).destinationsList
+        } catch (e: Exception) {
+            throw e
+        }
     }
 
     override fun close() {
         channel.shutdownNow()
     }
+}
 
+fun createChannel(serverUrl: String): ManagedChannel {
+    val uri = Uri.parse(serverUrl)
+    val builder = ManagedChannelBuilder.forAddress(uri.host, uri.port)
+    if (uri.scheme == "https") {
+        builder.useTransportSecurity()
+    } else {
+        builder.usePlaintext()
+    }
+    return builder
+        .intercept(LoggingInterceptor())
+        .executor(Dispatchers.IO.asExecutor())
+        .build()
 }
 ```
 </template>
@@ -627,10 +668,23 @@ CPU, Memory and Battery
 Google search terms in the past 5 years
 
 <br><br>
-<img src="/chart_4.png" width="670" />
+<img src="/chart_4_1.png" width="670" />
 
 https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,REST,gRPC&hl=en
+
 ---
+
+# Trend comparison
+Google search terms in the past 5 years
+
+<br><br>
+<img src="/chart_4_2.png" width="670" />
+
+https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,REST,gRPC&hl=en
+
+
+---
+
 
 # Summary
 <br><br>
@@ -700,7 +754,6 @@ layout: two-cols
 <br><br><br><br>
 
 - <grommet-icons-mail />  diegoalvispal@gmail.com
-- <grommet-icons-github />  [diegoalvis](https://github.com/diegoalvis)
-- <grommet-icons-linkedin />  [Diego Alvis](https://www.linkedin.com/in/diego-alvis-7823a5130/)
+- <grommet-icons-github />  https://github.com/diegoalvis
+- <grommet-icons-linkedin />  https://www.linkedin.com/in/diegoalvispal
 </template>
-
