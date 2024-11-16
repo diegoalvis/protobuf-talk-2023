@@ -14,11 +14,15 @@ transition: fade-out
 ## Introductory Session
 <br><br>
 
+<v-clicks>
+
 ### What to expect?
 
 Overview. What is Protobuf and gRPC?
 
 Why and When to use them?
+
+</v-clicks>
 
 <br><br>
 
@@ -304,7 +308,7 @@ Both sides use the same schema to auto generate code
 ---
 
 # Useful Tips
-<br> <br>
+<br><br><br><br>
 
 <v-clicks>
 
@@ -315,10 +319,11 @@ Generate files separately using
   option java_outer_classname = "TravelProto"; // Specify class name
 ```
 
+<br>
 If you have a multimodule project is better to create  a module to store all the proto files. Using Setup in gradle
-
+<br><br>
 Use optional to prevent breaking changes and better backwards compatibility support
-
+<br><br>
 Be careful with repeated. Large arrays don't perform well
 
 <br> <br>
