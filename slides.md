@@ -32,11 +32,9 @@ Why and When to use them?
 
 <v-clicks>
 
-Become an expert after 40 min talk
+Become an expert after 40 min
 
-gRPC will solve all your problems
-
-Socks, stickers and other free merchandise
+gRPC solves all your problems
 
 </v-clicks>
 
@@ -53,11 +51,10 @@ Diego Alvis
 
 Mobile Engineer at Zing (HSBC)
 
-Lived in Berlin for some years (Delivery Hero)
+Moved recently to Hong Kong (August). Lived in Berlin for some years. Worked at Delivery Hero.
 
-Moved recently to Hong Kong (August, 2024)
+Running. Muay Thai. Spicy food. Mario Kart...
 
-Run. Muay Thai. Love spicy food
 <br>
 
 ## Let's go!
@@ -73,10 +70,10 @@ Run. Muay Thai. Love spicy food
 - What is Protobuf?
 - Where can we use it?
 - What is gRPC?
+- Useful Tips
 - Benefits of Protobuf and gRPC
 - Implementtation on Android
-- Benchmarks
-- Learnings
+- Benchmarks & Learnings
 
 ---
 
@@ -84,7 +81,7 @@ Run. Muay Thai. Love spicy food
 
 <div v-click>
 
-<img src="/image_1.jpeg" width="650" height="100" />
+<img src="/res/images/diagram.jpeg" width="650" height="100" />
 
 </div>
 
@@ -646,11 +643,11 @@ layout: two-cols
 
 ### High Specs Device
 Response time in ms
-<img src="/chart_1.png" width="470" />
+<img src="/res/images/chart_1.png" width="470" />
 </div>
 <div v-click>
 CPU, Memory and Battery
-<img src="/chart_5.png" width="470" />
+<img src="/res/images/chart_5.png" width="470" />
 </div>
 </template>
 
@@ -659,11 +656,11 @@ CPU, Memory and Battery
 
 ### Low Specs Device
 Response time in ms
-<img src="/chart_2.png" width="470" />
+<img src="/res/images/chart_2.png" width="470" />
 </div>
 <div v-click>
 CPU, Memory and Battery
-<img src="/chart_6.png" width="470" />
+<img src="/res/images/chart_6.png" width="470" />
 </div>
 </template>
 
@@ -673,7 +670,7 @@ CPU, Memory and Battery
 Google search terms in the past 5 years
 
 <br><br>
-<img src="/chart_4_1.png" width="670" />
+<img src="/res/images/chart_4_1.png" width="670" />
 
 https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,REST,gRPC&hl=en
 
@@ -683,7 +680,7 @@ https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,RES
 Google search terms in the past 5 years
 
 <br><br>
-<img src="/chart_4_2.png" width="670" />
+<img src="/res/images/chart_4_2.png" width="670" />
 
 https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,REST,gRPC&hl=en
 
@@ -746,24 +743,24 @@ https://trends.google.com/trends/explore?cat=1227&date=today%205-y&q=GraphQL,RES
 ---
 layout: two-cols
 ---
+
 <template v-slot:default>
+<br><br>
+
+# Thank you!
 
 <br><br>
 
-# Thank You!
 
-<br><br><br><br>
-
-
-Travel App repo: https://github.com/diegoalvis/travel-app-grpc
+<img src="/res/images/github_qr_code.png" width="150" />
+<br>
+Github: https://github.com/diegoalvis/travel-app-grpc
 
 </template>
 
 <template v-slot:right>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
 
 - <grommet-icons-mail />  diegoalvispal@gmail.com
 - <grommet-icons-github />  https://github.com/diegoalvis
